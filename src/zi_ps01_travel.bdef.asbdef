@@ -1,0 +1,56 @@
+managed implementation in class zclbp_ps01_travel unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_PS01_Travel alias Travel
+persistent table zps01_travel
+draft table zps01d_travel
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( instance )
+{
+  create;
+  update;
+  delete (precheck);
+
+  field ( numbering : managed, readonly ) TravelUUID;
+  field ( readonly ) TravelID;
+
+  static action HelloWorld parameter ZAEPS01_IMP_HELLOWORLD result[1] ZAEPS01_EXP_HELLOWORLD;
+  static action CreateTravel parameter ZAEPS01_IMP_CREATE_TRAVEL result[1] ZAEPS01_EXP_HELLOWORLD;
+  action ApproveTravel result [1] $self;
+  action RejectTravel result [1] $self;
+
+  field ( readonly )
+  CreatedAt,
+  CreatedBy,
+  LastChangedAt,
+  LocalLastChangedBy,
+  LocalLastChangedAt;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zps01_travel corresponding
+  {
+    Traveluuid = traveluuid;
+    Travelid = travelid;
+    Agencyid = agencyid;
+    Customerid = customerid;
+    Begindate = begindate;
+    Enddate = enddate;
+    Bookingfee = bookingfee;
+    Totalprice = totalprice;
+    Currencycode = currencycode;
+    Status = status;
+    Description = description;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedAt = last_changed_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}

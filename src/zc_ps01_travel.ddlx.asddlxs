@@ -1,0 +1,120 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Travel',
+    typeNamePlural: 'Travels',
+    title: {
+        type: #STANDARD, value: 'Travelid'
+    },
+    description: {
+        value: 'Description'
+    }
+  }
+}
+annotate entity ZC_PS01_TRAVEL with
+{
+  @UI: {
+  facet : [
+      { id: 'FacetCollection', type: #COLLECTION },
+      { id: 'FacetData', type: #IDENTIFICATION_REFERENCE, parentId:'FacetCollection', label: 'General', targetQualifier: 'DATA' },
+      { id: 'FacetInfo', type: #IDENTIFICATION_REFERENCE, parentId:'FacetCollection', label: 'Information', targetQualifier: 'INFO' }
+  ],
+  lineItem: [
+      { position : 10, label : 'TravelUUID' },
+      { type: #FOR_ACTION, dataAction: 'ApproveTravel',label: 'Approve', position: 30 },
+      { type: #FOR_ACTION, dataAction: 'RejectTravel',label: 'Reject', position: 40 },
+      { type: #FOR_ACTION, dataAction: 'CreateTravel', label: 'Create from Template', position: 50, invocationGrouping: #CHANGE_SET }
+  ],
+  identification: [{ position: 10, label : 'TravelUUID', qualifier: 'DATA' }],
+  selectionField: [{ position: 10 }],
+  hidden: true
+  }
+  Traveluuid;
+
+  @UI: {
+    lineItem: [{ position : 20, label : 'TravelID' }],
+    identification: [{ position: 20, label : 'TravelID', qualifier: 'DATA' }],
+    selectionField: [{ position: 20 }]
+  }
+  Travelid;
+
+  @UI: {
+    lineItem: [{ position : 30, label : 'Agency' }],
+    identification: [{ position: 30, label : 'Agency', qualifier: 'DATA' }],
+    selectionField: [{ position: 30 }]
+  }
+  Agencyid;
+
+  @UI: {
+    lineItem: [{ position : 40, label : 'Customer' }],
+    identification: [{ position: 40, label : 'Customer', qualifier: 'DATA' }],
+    selectionField: [{ position: 40 }]
+  }
+  Customerid;
+
+  @UI: {
+    lineItem: [{ position : 50, label : 'Begin Date' }],
+    identification: [{ position: 50, label : 'Begin Date', qualifier: 'DATA' }],
+    selectionField: [{ position: 50 }]
+  }
+  Begindate;
+
+  @UI: {
+    lineItem: [{ position : 60, label : 'End Date' }],
+    identification: [{ position: 60, label : 'End Date', qualifier: 'DATA' }],
+    selectionField: [{ position: 60 }]
+  }
+  Enddate;
+
+  @UI: {
+    lineItem: [{ position : 70, label : 'Booking Fee' }],
+    identification: [{ position: 70, label : 'Booking Fee', qualifier: 'DATA' }],
+    selectionField: [{ position: 70 }]
+  }
+  Bookingfee;
+
+  @UI: {
+    lineItem: [{ position : 80, label : 'Total Price' }],
+    identification: [{ position: 80, label : 'Total Price', qualifier: 'DATA' }]
+  }
+  Totalprice;
+
+  @UI: {
+    lineItem: [{ position : 90, label : 'Currency' }],
+    identification: [{ position: 90, label : 'Currency', qualifier: 'DATA' }]
+  }
+  Currencycode;
+
+  @UI: {
+    lineItem: [{ position : 100, label : 'Status' }],
+    identification: [{ position: 100, label : 'Status', qualifier: 'DATA' }]
+  }
+  Status;
+
+  @UI: {
+    lineItem: [{ position : 110, label : 'Description' }],
+    identification: [{ position: 110, label : 'Description', qualifier: 'DATA' }]
+  }
+  Description;
+
+  @UI: {
+    identification: [{ position: 120, label : 'Created At', qualifier: 'INFO' }]
+  }
+  CreatedAt;
+
+  @UI: {
+    identification: [{ position: 130, label : 'Created At', qualifier: 'INFO' }]
+  }
+  CreatedBy;
+
+  @UI: {
+    identification: [{ position: 140, label : 'Changed By', qualifier: 'INFO' }]
+  }
+  LocalLastChangedBy;
+
+  @UI: {
+    identification: [{ position: 150, label : 'Changed At', qualifier: 'INFO' }]
+  }
+  LocalLastChangedAt;
+
+}
